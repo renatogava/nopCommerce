@@ -106,6 +106,9 @@ namespace Nop.Web.Infrastructure
             builder.RegisterType<Factories.TopicModelFactory>().As<Factories.ITopicModelFactory>().InstancePerLifetimeScope();
             builder.RegisterType<Factories.VendorModelFactory>().As<Factories.IVendorModelFactory>().InstancePerLifetimeScope();
             builder.RegisterType<Factories.WidgetModelFactory>().As<Factories.IWidgetModelFactory>().InstancePerLifetimeScope();
+
+            //integra pedidos
+            builder.RegisterType<Factories.CardapioOnlineModelFactory>().As<Factories.ICardapioOnlineModelFactory>().InstancePerLifetimeScope();
         }
 
         /// <summary>

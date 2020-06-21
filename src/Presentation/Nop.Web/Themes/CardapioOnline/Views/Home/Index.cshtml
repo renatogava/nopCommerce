@@ -1,0 +1,18 @@
+﻿
+@{
+    Layout = "_ColumnsOne";
+
+
+    //page class
+    Html.AppendPageCssClassParts("html-home-page");
+}
+<div class="page home-page">
+    <div class="page-body">
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageTop })
+
+        @await Component.InvokeAsync("HomepageProductsCardapioOnline")
+
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBottom })
+
+    </div>
+</div>

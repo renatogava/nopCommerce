@@ -1,0 +1,17 @@
+﻿@model IList<CategoryModel>
+@foreach (var category in Model)
+{
+    <div class="product-grid home-page-product-grid" id="cat-@category.Id">
+        <div class="title">
+            <strong>@category.Name</strong>
+        </div>
+        <div class="item-grid">
+            @foreach (var item in category.Products)
+            {
+                <div class="item-box">
+                    @await Html.PartialAsync("_ProductBox", item)
+                </div>
+            }
+        </div>
+    </div>
+}
