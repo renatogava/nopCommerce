@@ -1,0 +1,14 @@
+@model ProductDetailsModel
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4>@Model.Name</h4>
+    </div>
+    <div class="modal-body">
+        <!--attributes-->
+        @{
+            var dataDictAttributes = new ViewDataDictionary(ViewData);
+            dataDictAttributes.TemplateInfo.HtmlFieldPrefix = $"attributes_{Model.Id}";
+            @await Html.PartialAsync("_ProductAttributes", Model.ProductAttributes, dataDictAttributes)
+        }
+    </div>

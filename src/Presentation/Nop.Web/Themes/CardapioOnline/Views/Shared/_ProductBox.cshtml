@@ -19,11 +19,11 @@
         addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity });
     }
 }
-<div class="product-item" data-productid="@Model.Id">
+<div class="product-item" data-productid="@Model.Id" data-toggle="modal" data-target="#productdetails-window">
 
     <div class="details">
         <h2 class="product-title">
-            <a href="@Url.RouteUrl("Product", new {SeName = Model.SeName})">@Model.Name</a>
+            <a>@Model.Name</a>
         </h2>
         <div class="description">
             @Html.Raw(Model.ShortDescription)

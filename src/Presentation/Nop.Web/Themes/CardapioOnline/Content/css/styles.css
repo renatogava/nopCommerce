@@ -68,8 +68,8 @@ body {
 	overflow-x: hidden;
 	background-color: #fff;
 	font: normal 14px Arial, Helvetica, sans-serif;
-  color: #777;
-  margin-top: 45px
+  color: #777 !important;
+  margin-top: 45px !important
 }
 h1,h2,h3,h4,h5,h6 {
 	color: #444;
@@ -131,13 +131,11 @@ label, label + * {
 }
 
 .master-wrapper-content {
-	position: relative;
 	z-index: 0;
 	width: 90%;
 	margin: 0 auto;
 }
 .master-column-wrapper {
-	position: relative;
 	z-index: 0;
 }
 .master-column-wrapper:after {
@@ -720,12 +718,33 @@ label, label + * {
 
 /*********** HEADER ***********/
 
+.modal-header h4 {
+  font-size: 31px
+}
 
+.modal-header .close {
+  margin-top: 9px !important;
+  font-size: 40px;
+  color: #6b6b6b !important;
+  opacity: 1;
+}
+
+.modal-busy {
+  height: 1155px
+}
+
+.modal-body span {
+  background: url(../images/loading.gif) no-repeat;
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin: 45%;
+}
 
 .admin-header-links {
-	background-color: #333;
-	text-align: center;
-	color: #eee;
+  background-color: #333;
+  text-align: center;
+  color: #eee;
 }
 .admin-header-links * {
 	display: inline-block;
@@ -811,6 +830,7 @@ label, label + * {
 }
 .header-links ul {
 	font-size: 0;
+  margin-bottom: 0px
 }
 .header-links li {
 	display: inline-block;
@@ -1488,6 +1508,9 @@ label, label + * {
 .item-box:hover .picture a img {
 	opacity: 0.85;
 }
+.item-box:hover {
+	background: #e4e4e4;
+}
 .item-box .details {
 	padding: 0 10px;
 }
@@ -1501,6 +1524,7 @@ label, label + * {
 }
 .item-box .product-title a {
 	display: block;
+  color: #444
 }
 .item-box .product-title a:hover {
 	color: #ec2121;
@@ -2170,11 +2194,22 @@ label, label + * {
 	margin: 0 0 5px;
 	white-space: nowrap; 
 	font-weight: bold;
-	color: #444;
+	color: #fff;
+  background:#ec2121
 }
+
+.attributes dt label {
+  font-size: 20px;
+  margin: 5px;
+}
+
+.attribute-description {
+  font-weight: normal;
+}
+
 .attributes dd,
 .attribute-data {
-	margin: 0 0 10px;
+  margin: 0 0 10px;
 }
 .attributes li {
 	margin: 8px 0 12px;
@@ -2185,7 +2220,10 @@ label, label + * {
 	max-width: 100%;
 }
 .attributes .option-list label {
-	margin: 0 5px;
+  margin: 0 5px;
+  font-size: 18px;
+  padding: 5px;
+  font-weight: normal
 }
 
 .attributes .datepicker {
@@ -5768,6 +5806,7 @@ pre {
 .item-box {
 	width: 96%;
 	margin: 0 0.5% 15px;
+  cursor: pointer
 }
 .item-box:nth-child(2n+1) {
 	clear: both;
@@ -6748,6 +6787,7 @@ pre {
 .header-menu > ul {
 	display: block !important; /* prevents toggle display:none on resize */
 	font-size: 0;
+  margin-bottom: 0px;
 }
 .header-menu > ul.mobile {
 	display: none !important;

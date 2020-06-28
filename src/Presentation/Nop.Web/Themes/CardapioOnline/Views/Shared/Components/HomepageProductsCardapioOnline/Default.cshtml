@@ -1,4 +1,28 @@
 ﻿@model IList<CategoryModel>
+@inject IWorkContext workContext
+@inject LocalizationSettings localizationSettings
+@inject IThemeContext themeContext
+@using Nop.Core
+@using Nop.Core.Domain.Localization
+@{
+    var supportRtl = workContext.WorkingLanguage.Rtl && !localizationSettings.IgnoreRtlPropertyForAdminArea;
+
+    //CSS resources
+    if (supportRtl)
+    {
+        Html.AppendCssFileParts("~/lib/bootstrap/css/bootstrap.rtl.css");
+    }
+    else
+    {
+        Html.AppendCssFileParts("~/lib/bootstrap/css/bootstrap.min.css");
+    }
+
+    Html.AddScriptParts(ResourceLocation.Footer, ($"~/lib/bootstrap/js/bootstrap.min.js"));
+
+    var themeName = themeContext.WorkingThemeName;
+
+    Html.AddScriptParts(ResourceLocation.Footer, ($"~/Themes/{themeName}/Content/js/product-details-modal.js"));
+}
 @foreach (var category in Model)
 {
     <div class="product-grid home-page-product-grid" id="cat-@category.Id">
@@ -15,3 +39,20 @@
         </div>
     </div>
 }
+
+@*product details modal*@
+<div id="productdetails-window" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="productdetails-window-title">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Carregando, por favor aguarde...</h4>
+            </div>
+            <div class="modal-body">
+                <div class="modal-busy">
+                    <span>&nbsp;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
