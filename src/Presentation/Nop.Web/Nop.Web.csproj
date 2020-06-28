@@ -29,12 +29,17 @@
     <!-- We copy the entire \App_Data directory. But we ignore JSON files and data protection keys  -->
     <Content Include="App_Data\**" CopyToPublishDirectory="PreserveNewest" Exclude="App_Data\*.json" />
     <Content Remove="App_Data\*.json" />
+    <Content Remove="Themes\CardapioOnline\Views\Product\**" />
     <Content Update="App_Data\DataProtectionKeys\*.xml" CopyToPublishDirectory="Never" />
 
     <Compile Remove="Plugins\**;Themes\**" />
+
+    <Compile Remove="Themes\CardapioOnline\Views\Product\**" />
     <Content Remove="Plugins\**;Themes\**" />
     <EmbeddedResource Remove="Plugins\**;Themes\**" />
+    <EmbeddedResource Remove="Themes\CardapioOnline\Views\Product\**" />
     <None Remove="Plugins\**;Themes\**" />
+    <None Remove="Themes\CardapioOnline\Views\Product\**" />
     <Content Include="App_Data\dataSettings.json" />
     <Content Include="App_Data\plugins.json" />
 
@@ -50,7 +55,6 @@
     <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
     <Content Remove="Themes\CardapioOnline\Views\Home\_ProductDetails.cshtml.cs" />
     <None Remove="Themes\CardapioOnline\Content\js\product-details-modal.js" />
-    <None Remove="Themes\CardapioOnline\Views\Product\_ProductAttributes.cshtml" />
 
     <None Update="Areas\Admin\sitemap.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -68,7 +72,6 @@
 
   <ItemGroup>
     <Folder Include="Plugins\" />
-    <Folder Include="Themes\CardapioOnline\Views\Product\" />
   </ItemGroup>
 
   <ItemGroup>

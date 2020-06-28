@@ -157,7 +157,6 @@ label, label + * {
 
 .page {
 	min-height: 200px;
-	text-align: center;
 }
 .page-title {
 	min-height: 50px;
