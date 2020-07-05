@@ -163,7 +163,7 @@ var AjaxCart = {
         //display notification
         if (response.success === true) {
           //success
-          $(".modal-content").html("<div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button><h4>Seu produto adicionado na sacola</h4></div><div class=\"modal-body\"><div><a class=\"add-more-itens-modal\" data-dismiss=\"modal\">Adicionar mais itens</a><input class=\"submit-order-modal\" type=\"button\" onclick=\"location.href = '/cart'\" value=\"Finalizar Pedido\" /></div></div>");
+          $(".modal-content").html("<div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button><h4>Seu produto foi adicionado na sacola</h4></div><div class=\"modal-body\"><div><a class=\"add-more-itens-modal\" data-dismiss=\"modal\">Adicionar mais itens</a><input class=\"submit-order-modal\" type=\"button\" onclick=\"location.href = '/cart'\" value=\"Finalizar Pedido\" /></div></div>");
         }
         else {
           //error
