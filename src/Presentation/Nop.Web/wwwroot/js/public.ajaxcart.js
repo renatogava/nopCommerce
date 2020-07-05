@@ -25,6 +25,11 @@ var AjaxCart = {
         this.loadWaiting = display;
     },
 
+    setLoadWaitingModal: function (display) {
+      displayAjaxLoadingModal(display);
+      this.loadWaiting = display;
+    },
+
     //add a product to the cart/wishlist from the catalog pages
     addproducttocart_catalog: function (urladd) {
         if (this.loadWaiting !== false) {
@@ -58,6 +63,24 @@ var AjaxCart = {
             complete: this.resetLoadWaiting,
             error: this.ajaxFailure
         });
+    },
+
+    //add a product to the cart modal page
+    addproducttocart_details_modal: function (urladd, formselector) {
+      if (this.loadWaiting !== false) {
+        return;
+      }
+      this.setLoadWaitingModal(true);
+
+      $.ajax({
+        cache: false,
+        url: urladd,
+        data: $(formselector).serialize(),
+        type: "POST",
+        success: this.success_process_modal,
+        complete: this.resetLoadWaiting_modal,
+        error: this.ajaxFailure
+      });
     },
 
     //add a product to compare list
@@ -101,13 +124,13 @@ var AjaxCart = {
             }
             else {
                 //error
-                if (AjaxCart.usepopupnotifications === true) {
-                    displayPopupNotification(response.message, 'error', true);
-                }
-                else {
-                    //no timeout for errors
-                    displayBarNotification(response.message, 'error', 0);
-                }
+              if (AjaxCart.usepopupnotifications === true) {
+                displayPopupNotification(response.message, 'error', true);
+              }
+              else {
+                //no timeout for errors
+                displayBarNotification(response.message, 'error', 0);
+              }
             }
             return false;
         }
@@ -120,6 +143,40 @@ var AjaxCart = {
 
     resetLoadWaiting: function () {
         AjaxCart.setLoadWaiting(false);
+    },
+
+    resetLoadWaiting_modal: function () {
+      AjaxCart.setLoadWaitingModal(false);
+    },
+
+    success_process_modal: function (response) {
+      if (response.updatetopcartsectionhtml) {
+        $(AjaxCart.topcartselector).html(response.updatetopcartsectionhtml);
+      }
+      if (response.updatetopwishlistsectionhtml) {
+        $(AjaxCart.topwishlistselector).html(response.updatetopwishlistsectionhtml);
+      }
+      if (response.updateflyoutcartsectionhtml) {
+        $(AjaxCart.flyoutcartselector).replaceWith(response.updateflyoutcartsectionhtml);
+      }
+      if (response.message) {
+        //display notification
+        if (response.success === true) {
+          //success
+          $(".modal-content").html("<div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button><h4>Seu produto adicionado na sacola</h4></div><div class=\"modal-body\"><div><a class=\"add-more-itens-modal\" data-dismiss=\"modal\">Adicionar mais itens</a><input class=\"submit-order-modal\" type=\"button\" onclick=\"location.href = '/cart'\" value=\"Finalizar Pedido\" /></div></div>");
+        }
+        else {
+          //error
+          //no timeout for errors
+          displayBarNotificationModal(response.message, 'error', 0);
+        }
+        return false;
+      }
+      if (response.redirect) {
+        location.href = response.redirect;
+        return true;
+      }
+      return false;
     },
 
     ajaxFailure: function () {

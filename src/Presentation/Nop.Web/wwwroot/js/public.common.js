@@ -18,11 +18,20 @@ function setLocation(url) {
 }
 
 function displayAjaxLoading(display) {
+  if (display) {
+    $('.ajax-loading-block-window').show();
+  }
+  else {
+    $('.ajax-loading-block-window').hide('slow');
+  }
+}
+
+function displayAjaxLoadingModal(display) {
     if (display) {
-        $('.ajax-loading-block-window').show();
+        $('.ajax-loading-block-window-modal').show();
     }
     else {
-        $('.ajax-loading-block-window').hide('slow');
+        $('.ajax-loading-block-window-modal').hide();
     }
 }
 
@@ -171,6 +180,72 @@ function displayBarNotification(message, messagetype, timeout) {
             $(htmlcode).fadeOut('slow', removeNoteItem);
         }, timeout);
     }
+}
+
+function displayBarNotificationModal(message, messagetype, timeout) {
+  var notificationTimeout;
+
+  var messages = typeof message === 'string' ? [message] : message;
+  if (messages.length === 0)
+    return;
+
+  //types: success, error, warning
+  var cssclass = ['success', 'error', 'warning'].indexOf(messagetype) !== -1 ? messagetype : 'success';
+
+  //remove previous CSS classes and notifications
+  $('#bar-notification-modal')
+    .removeClass('success')
+    .removeClass('error')
+    .removeClass('warning');
+  $('.bar-notification').remove();
+
+  //add new notifications
+  var htmlcode = document.createElement('div');
+
+  //IE11 Does not support miltiple parameters for the add() & remove() methods
+  htmlcode.classList.add('bar-notification', cssclass);
+  htmlcode.classList.add(cssclass);
+
+  //add close button for notification
+  var close = document.createElement('span');
+  close.classList.add('close');
+  close.textContent = '×';
+  close.setAttribute('title', document.getElementById('bar-notification-modal').dataset.close);
+
+  for (var i = 0; i < messages.length; i++) {
+    var content = document.createElement('p');
+    content.classList.add('content');
+    content.innerHTML = messages[i];
+
+    htmlcode.appendChild(content);
+  }
+
+  htmlcode.appendChild(close);
+
+  $('#bar-notification-modal')
+    .append(htmlcode);
+
+  $(htmlcode)
+    .fadeIn('slow')
+    .on('mouseenter', function () {
+      clearTimeout(notificationTimeout);
+    });
+
+  //callback for notification removing
+  var removeNoteItem = function () {
+    $(htmlcode).remove();
+  };
+
+  $(close).on('click', function () {
+    $(htmlcode).fadeOut('slow', removeNoteItem);
+  });
+
+  //timeout (if set)
+  if (timeout > 0) {
+    notificationTimeout = setTimeout(function () {
+      $(htmlcode).fadeOut('slow', removeNoteItem);
+    }, timeout);
+  }
 }
 
 function htmlEncode(value) {

@@ -1,14 +1,37 @@
 @model ProductDetailsModel
+@using Nop.Core
+@using Nop.Core.Domain.Orders
 
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4>@Model.Name</h4>
-    </div>
-    <div class="modal-body">
-        <!--attributes-->
-        @{
-            var dataDictAttributes = new ViewDataDictionary(ViewData);
-            dataDictAttributes.TemplateInfo.HtmlFieldPrefix = $"attributes_{Model.Id}";
-            @await Html.PartialAsync("_ProductAttributes", Model.ProductAttributes, dataDictAttributes)
-        }
-    </div>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4>@Model.Name</h4>
+</div>
+<div class="modal-body">
+    <form asp-route="Product" asp-route-sename="@Model.SeName" method="post" id="product-details-form">
+        <div data-productid="@Model.Id">
+            <div class="overview-modal">
+
+                <!--attributes-->
+                @{
+                    var dataDictAttributes = new ViewDataDictionary(ViewData);
+                    dataDictAttributes.TemplateInfo.HtmlFieldPrefix = $"attributes_{Model.Id}";
+                    @await Html.PartialAsync("_ProductAttributes", Model.ProductAttributes, dataDictAttributes)
+                }
+
+                <div id="bar-notification-modal" class="bar-notification-container-modal" data-close="@T("Common.Close")">
+                </div>
+
+                <!--price & add to cart & estimate shipping-->
+                @{
+                    var dataDictPrice = new ViewDataDictionary(ViewData);
+                    dataDictPrice.TemplateInfo.HtmlFieldPrefix = $"price_{Model.Id}";
+                    @await Html.PartialAsync("_ProductPrice", Model.ProductPrice, dataDictPrice)
+
+                    var dataDictAddToCart = new ViewDataDictionary(ViewData);
+                    dataDictAddToCart.TemplateInfo.HtmlFieldPrefix = $"addtocart_{Model.Id}";
+                    @await Html.PartialAsync("_AddToCart", Model.AddToCart, dataDictAddToCart)
+                }
+            </div>
+        </div>
+    </form>
+</div>

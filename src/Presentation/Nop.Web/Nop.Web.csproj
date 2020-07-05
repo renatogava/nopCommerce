@@ -45,7 +45,11 @@
 
     <Content Include="Plugins\bin\placeholder.txt" CopyToPublishDirectory="PreserveNewest" />
 
+    <Content Include="Themes\CardapioOnline\Views\CardapioOnline\_AddToCart.cshtml" />
+
     <Content Include="Themes\CardapioOnline\Views\CardapioOnline\_ProductAttributes.cshtml" />
+
+    <Content Include="Themes\CardapioOnline\Views\CardapioOnline\_ProductPrice.cshtml" />
     <None Include="Plugins\**" CopyToPublishDirectory="PreserveNewest" />
 
     <Content Include="Themes\**" CopyToPublishDirectory="PreserveNewest" Exclude="Themes\**\*.config;Themes\**\*.cshtml;Themes\**\*.json" />
@@ -55,6 +59,8 @@
     <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
     <Content Remove="Themes\CardapioOnline\Views\Home\_ProductDetails.cshtml.cs" />
     <None Remove="Themes\CardapioOnline\Content\js\product-details-modal.js" />
+    <None Remove="Themes\CardapioOnline\Views\CardapioOnline\_AddToCart.cshtml" />
+    <None Remove="Themes\CardapioOnline\Views\CardapioOnline\_ProductPrice.cshtml" />
 
     <None Update="Areas\Admin\sitemap.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -75,7 +81,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Themes\CardapioOnline\Views\CardapioOnline\_AddToCart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Update="Themes\CardapioOnline\Views\CardapioOnline\_ProductAttributes.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Themes\CardapioOnline\Views\CardapioOnline\_ProductPrice.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

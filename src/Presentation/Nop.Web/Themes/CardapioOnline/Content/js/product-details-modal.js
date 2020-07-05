@@ -20,6 +20,6 @@
 
     $("#productdetails-window").on("hide.bs.modal", function (e) {
 
-        $(".modal-content").html("<div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button><h4>Carregando, por favor aguarde...</h4></div><div class=\"modal-body\"><div class=\"modal-busy\"><span>&nbsp;</span></div></div>");
+        $(".modal-content").html("<div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button><h4>Carregando, por favor aguarde...</h4></div><div class=\"modal-body\"><div class=\"modal-busy\"><span class=\"loading\">&nbsp;</span></div></div>");
     });
 });

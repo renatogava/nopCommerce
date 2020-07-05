@@ -43,6 +43,7 @@
 @*product details modal*@
 <div id="productdetails-window" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="productdetails-window-title">
     <div class="modal-dialog">
+        <div class="ajax-loading-block-window-modal" style="display:none"><span class="loading">&nbsp;</span></div>
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -50,9 +51,27 @@
             </div>
             <div class="modal-body">
                 <div class="modal-busy">
-                    <span>&nbsp;</span>
+                    <span class="loading">&nbsp;</span>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@*<div id="productdetails-window" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="productdetails-window-title">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Seu produto adicionado na sacola</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <a class="add-more-itens-modal" data-dismiss="modal">Adicionar mais itens</a>
+
+                    <input class="submit-order-modal" type="button" value="Finalizar Pedido" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
